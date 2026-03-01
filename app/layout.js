@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "testToSql",
-  description: "Convert plain english language into sql query",
+  title: "Text to SQL Generator | Convert English to SQL Instantly",
+  description: "Free AI Text to SQL tool. Convert natural language into PostgreSQL SQL queries instantly.",
   verification: {
     google: "8bff_rmm7f4UUOQ16NanNyAdzim0MYN0o7hW_HrEx7s"
   }

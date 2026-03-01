@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://texttosql1.vercel.app
+
+# Sitemaps
+Sitemap: https://texttosql1.vercel.app/sitemap.xml
