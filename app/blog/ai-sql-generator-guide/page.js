@@ -26,7 +26,7 @@ export default function BlogPost() {
 
         <p className="mt-6 text-lg leading-8 text-zinc-700 dark:text-zinc-300">
           Writing SQL queries can be time-consuming and repetitive. An{" "}
-          <strong>AI SQL Generator</strong> allows you to convert natural
+          <strong>AI SQL Generator</strong> allows you to convert natural Plain english
           language into SQL instantly.
         </p>
 
