@@ -57,7 +57,7 @@ export default function BlogPost() {
 
         <p className="mt-4 leading-8 text-zinc-700 dark:text-zinc-300">
           An AI SQL generator is a tool that converts plain English into
-          structured SQL queries.
+          structured SQL queries. You can also integerate this system with your own db.
         </p>
 
         <p className="mt-4 leading-8 text-zinc-700 dark:text-zinc-300">
