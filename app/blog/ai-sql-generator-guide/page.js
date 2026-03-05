@@ -17,7 +17,7 @@ export default function BlogPost() {
     <main className="min-h-screen bg-white text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
       <article className="mx-auto max-w-3xl px-4 py-12">
         <p className="text-sm text-zinc-500 dark:text-zinc-400">
-          Published 2026 By GRV • AI SQL Generator Guide 
+          Published 2026 By GRV • AI SQL Generator Guide help to get started
         </p>
 
         <h1 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">
