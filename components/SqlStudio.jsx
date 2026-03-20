@@ -753,7 +753,8 @@ const App = () => {
         </div>
 
         {/* Output/Table Area */}
-        <div className="flex-1 p-8 overflow-hidden flex flex-col gap-6">
+        {/* CHANGED: overflow-y-auto so the whole output section scrolls, letting Result Set expand fully */}
+        <div className="flex-1 p-8 overflow-y-auto custom-scrollbar flex flex-col gap-6">
           {response && (
             <>
               <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 shrink-0">
@@ -839,7 +840,8 @@ const App = () => {
 
               {/* Results Table - Hidden for Spark */}
               {response.engine !== "spark" && (
-                <div className="flex-1 bg-[#16191F] rounded-2xl border border-slate-800 flex flex-col overflow-hidden shadow-2xl">
+                // CHANGED: removed flex-1 + overflow-hidden, now shrink-0 with fixed min/max height and internal scroll
+                <div className="bg-[#16191F] rounded-2xl border border-slate-800 flex flex-col shadow-2xl shrink-0">
                   <div className="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-slate-800/20">
                     <h2 className="text-sm font-bold flex items-center gap-2">
                       <Terminal className="w-4 h-4 text-blue-500" /> Result Set
@@ -849,7 +851,11 @@ const App = () => {
                     </h2>
                   </div>
 
-                  <div className="flex-1 overflow-auto custom-scrollbar">
+                  {/* CHANGED: overflow-auto with minHeight 300px and maxHeight 420px for scroll when >5 rows */}
+                  <div
+                    className="overflow-auto custom-scrollbar"
+                    style={{ minHeight: "300px", maxHeight: "420px" }}
+                  >
                     {response.results?.length > 0 ? (
                       <table className="w-full text-left border-collapse">
                         <thead className="sticky top-0 z-20 bg-[#1A1E24]">
@@ -857,7 +863,7 @@ const App = () => {
                             {getColumns().map((col) => (
                               <th
                                 key={col}
-                                className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase border-b border-slate-800"
+                                className="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase border-b border-slate-800 whitespace-nowrap"
                               >
                                 {col}
                               </th>
@@ -873,7 +879,7 @@ const App = () => {
                               {getColumns().map((col) => (
                                 <td
                                   key={col}
-                                  className="px-6 py-4 text-sm text-slate-400"
+                                  className="px-6 py-4 text-sm text-slate-400 whitespace-nowrap"
                                 >
                                   {row[col] === null ? (
                                     <span className="text-slate-700 italic">
@@ -889,7 +895,7 @@ const App = () => {
                         </tbody>
                       </table>
                     ) : (
-                      <div className="h-full flex flex-col items-center justify-center text-slate-600 gap-4">
+                      <div className="h-full flex flex-col items-center justify-center text-slate-600 gap-4 py-16">
                         <Terminal className="w-12 h-12 opacity-20" />
                         <p className="text-sm italic">
                           No data returned for this query
@@ -897,6 +903,15 @@ const App = () => {
                       </div>
                     )}
                   </div>
+
+                  {/* ADDED: subtle footer hint when rows exceed 5 */}
+                  {response.results?.length > 5 && (
+                    <div className="px-6 py-2 border-t border-slate-800 bg-slate-900/20">
+                      <p className="text-[10px] text-slate-600">
+                        Showing all {response.results.length} rows · scroll to view more
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
 
